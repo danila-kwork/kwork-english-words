@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "878614295542",
+    "firebase_url": "https://english-words-86b70-default-rtdb.firebaseio.com",
+    "project_id": "english-words-86b70",
+    "storage_bucket": "english-words-86b70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878614295542:android:c5291363395aa25b404dd7",
+        "android_client_info": {
+          "package_name": "ru.english"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878614295542-d3gqnit7g4ljf4hu1nngfkupgmvsgvkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhymYyOSfgmUuWnpHkBXce1VcRXmGfF3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878614295542-d3gqnit7g4ljf4hu1nngfkupgmvsgvkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

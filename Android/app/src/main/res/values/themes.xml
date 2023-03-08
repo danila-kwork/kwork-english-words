@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.English" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#003700B3</item>
+        <item name="android:navigationBarColor">#4479af</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>
