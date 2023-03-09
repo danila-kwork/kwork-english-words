@@ -1,12 +1,9 @@
 package ru.english.data.words
 
-import android.util.Log
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import ru.english.data.words.model.Word
+import ru.english.data.words.model.WordsLevel
 import ru.english.data.words.model.mapWord
 
 class WordsDataStore {
@@ -14,28 +11,32 @@ class WordsDataStore {
     private val db = Firebase.database
 
     fun getWordsList(
+        wordsLevel: WordsLevel = WordsLevel.FIRST,
         onSuccess: (List<Word>) -> Unit
     ) {
         val words = ArrayList<Word>()
-        val startInterval = (1..10).random() * 100
-        val endInterval = startInterval + 100
 
-        CoroutineScope(Dispatchers.IO).launch {
-            (startInterval..endInterval).forEach {
-                getById(it){
-                    words.add(it)
+        db.reference.child("words")
+            .orderByKey()
+            .startAfter(wordsLevel.startId.toString())
+            .endBefore(wordsLevel.endId.toString())
+            .get()
+            .addOnSuccessListener {
+                it.children.forEach {
+                    words.add(it.mapWord())
                 }
+                onSuccess(words)
             }
-
-            onSuccess(words)
-        }
     }
 
-    private fun getById(
-        id: Int,
+    fun getRandomWord(
         onSuccess: (Word) -> Unit
-    ){
-        db.reference.child("words") .child(id.toString()).get()
-            .addOnSuccessListener { onSuccess(it.mapWord()) }
+    ) {
+        val number = (0..1000).random()
+
+        db.reference.child("words").child(number.toString()).get()
+            .addOnSuccessListener {
+                onSuccess(it.mapWord())
+            }
     }
 }

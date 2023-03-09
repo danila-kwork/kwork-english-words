@@ -89,7 +89,7 @@ fun MainScreen(
                         navController.navigate(Screen.WordsList.route)
                     }
                 ) {
-                    Text(text = "Слова", color = primaryText)
+                    Text(text = "Словарь", color = primaryText)
                 }
 
                 Button(
@@ -102,7 +102,7 @@ fun MainScreen(
                     ),
                     shape = AbsoluteRoundedCornerShape(15.dp),
                     onClick = {
-
+                        navController.navigate(Screen.Questions.route)
                     }
                 ) {
                     Text(text = "Вопросы", color = primaryText)

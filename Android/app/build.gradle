@@ -71,4 +71,11 @@ dependencies {
     implementation "com.wajahatkarim:flippable:1.0.6"
     implementation 'com.alexstyl.swipeablecard:swipeablecard:0.1.0'
     implementation "com.google.accompanist:accompanist-pager:0.28.0"
+
+    implementation 'com.yandex.android:mobileads-mediation:5.6.0.0'
+    implementation 'com.yandex.android:mobileads:5.6.0'
+    implementation 'com.my.target:mytarget-sdk:5.16.2'
+
+    implementation("joda-time:joda-time:2.12.1")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.6")
 }

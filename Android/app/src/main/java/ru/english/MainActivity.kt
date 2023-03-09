@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import ru.english.ui.navigation.Screen
 import ru.english.ui.screens.authScreen.AuthScreen
 import ru.english.ui.screens.mainScreen.MainScreen
+import ru.english.ui.screens.questionsScreen.QuestionsScreen
 import ru.english.ui.screens.wordsListScreen.WordsListScreen
 
 
@@ -39,6 +40,9 @@ class MainActivity : ComponentActivity() {
                     }
                     composable(Screen.WordsList.route){
                         WordsListScreen(navController = navController)
+                    }
+                    composable(Screen.Questions.route){
+                        QuestionsScreen(navController = navController)
                     }
                 }
             )
