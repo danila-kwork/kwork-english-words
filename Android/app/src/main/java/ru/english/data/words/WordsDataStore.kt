@@ -2,6 +2,7 @@ package ru.english.data.words
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import ru.english.data.utils.UtilsDataStore
 import ru.english.data.words.model.Word
 import ru.english.data.words.model.WordsLevel
 import ru.english.data.words.model.mapWord
@@ -11,6 +12,12 @@ import kotlin.collections.ArrayList
 class WordsDataStore {
 
     private val db = Firebase.database
+    private val utilsDataStore = UtilsDataStore()
+    private var wordsCount = 0
+
+    init {
+        utilsDataStore.getWordsCount { wordsCount = it }
+    }
 
     fun getWordsList(
         wordsLevel: WordsLevel = WordsLevel.FIRST,
@@ -34,7 +41,7 @@ class WordsDataStore {
     fun getRandomWord(
         onSuccess: (Word) -> Unit
     ) {
-        val number = (0..1000).random()
+        val number = (0..wordsCount).random()
 
         db.reference.child("words").child(number.toString()).get()
             .addOnSuccessListener {
@@ -44,9 +51,11 @@ class WordsDataStore {
 
     fun add(word:Word, onSuccess: () -> Unit){
 
-        db.reference.child("words").child(UUID.randomUUID().toString()).setValue(word)
+        db.reference.child("words").child((wordsCount + 1).toString()).setValue(word)
             .addOnSuccessListener {
-                onSuccess()
+                utilsDataStore.updateWordsCount(wordsCount + 1){
+                    onSuccess()
+                }
             }
     }
 }

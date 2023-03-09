@@ -20,6 +20,18 @@ class UtilsDataStore {
             }
     }
 
+    fun getWordsCount(onSuccess: (Int) -> Unit) {
+
+        database.reference.child("utils").child("words_count").get()
+            .addOnSuccessListener { onSuccess(it.value.toString().toInt()) }
+    }
+
+    fun updateWordsCount(count:Int,onSuccess: () -> Unit) {
+
+        database.reference.child("utils").child("words_count").setValue(count)
+            .addOnSuccessListener { onSuccess() }
+    }
+
     fun create(utils: Utils, onSuccess: () -> Unit) {
         database.reference.child("utils").setValue(utils)
             .addOnSuccessListener { onSuccess() }

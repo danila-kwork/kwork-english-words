@@ -49,6 +49,7 @@ fun SettingsScreen(
     var rewardedAdsClick by remember { mutableStateOf("") }
     var rewardedAdsPrice by remember { mutableStateOf("") }
     var rewardedYandexAdsId by remember { mutableStateOf("") }
+    var wordsCount by remember { mutableStateOf("") }
 
     LaunchedEffect(key1 = Unit, block = {
         utilsDataStore.get(onSuccess = {  utils ->
@@ -60,6 +61,7 @@ fun SettingsScreen(
             rewardedAdsClick = utils.rewarded_ads_click.toString()
             rewardedAdsPrice = utils.rewarded_ads_price.toString()
             rewardedYandexAdsId = utils.rewarded_yandex_ads_id
+            wordsCount = utils.words_count.toString()
         })
     })
 
@@ -155,7 +157,8 @@ fun SettingsScreen(
                                 rewarded_ads_price = rewardedAdsPrice.toDouble(),
                                 rewarded_yandex_ads_id = rewardedYandexAdsId,
                                 banner_ads_price = 0.0,
-                                banner_ads_click_price = 0.0
+                                banner_ads_click_price = 0.0,
+                                words_count = wordsCount.toInt()
                             ),
                             onSuccess = { navController.navigateUp() }
                         )

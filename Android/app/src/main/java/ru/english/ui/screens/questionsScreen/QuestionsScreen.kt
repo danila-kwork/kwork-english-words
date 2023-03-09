@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import kotlinx.coroutines.delay
 import org.joda.time.Period
 import ru.english.R
 import ru.english.data.user.UserDataStore
@@ -77,6 +78,7 @@ fun QuestionsScreen(
     LaunchedEffect(key1 = Unit, block = {
         userDataStore.get { user = it }
         utilsDataStore.get({ utils = it })
+        delay(500L)
         wordsDataStore.getRandomWord { word = it; countQuestions++ }
 
         focusRequester.requestFocus()

@@ -13,7 +13,8 @@ data class Utils(
     val rewarded_ads_price: Double,
     val banner_ads_click_price: Double,
     val banner_ads_price: Double,
-    val rewarded_yandex_ads_id: String
+    val rewarded_yandex_ads_id: String,
+    val words_count: Int
 )
 
 fun DataSnapshot.mapUtils(): Utils {
@@ -29,5 +30,6 @@ fun DataSnapshot.mapUtils(): Utils {
         rewarded_yandex_ads_id = child("rewarded_yandex_ads_id").value.toString(),
         banner_ads_price = child("banner_ads_price").value.toString().toDouble(),
         banner_ads_click_price = child("banner_ads_click_price").value.toString().toDouble(),
+        words_count = child("words_count").value.toString().toInt(),
     )
 }
