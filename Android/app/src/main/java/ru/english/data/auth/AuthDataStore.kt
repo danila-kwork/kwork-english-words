@@ -16,6 +16,7 @@ class AuthDataStore {
 
     fun signIn(email:String,password: String, onSuccess:() -> Unit, onError:(message:String) -> Unit){
         auth.signInWithEmailAndPassword(email, password)
+            .addOnSuccessListener { onSuccess() }
             .addOnFailureListener {
                 when(it){
                     is FirebaseAuthInvalidCredentialsException -> {

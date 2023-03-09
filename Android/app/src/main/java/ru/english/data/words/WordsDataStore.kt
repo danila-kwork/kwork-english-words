@@ -5,6 +5,8 @@ import com.google.firebase.ktx.Firebase
 import ru.english.data.words.model.Word
 import ru.english.data.words.model.WordsLevel
 import ru.english.data.words.model.mapWord
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WordsDataStore {
 
@@ -37,6 +39,14 @@ class WordsDataStore {
         db.reference.child("words").child(number.toString()).get()
             .addOnSuccessListener {
                 onSuccess(it.mapWord())
+            }
+    }
+
+    fun add(word:Word, onSuccess: () -> Unit){
+
+        db.reference.child("words").child(UUID.randomUUID().toString()).setValue(word)
+            .addOnSuccessListener {
+                onSuccess()
             }
     }
 }

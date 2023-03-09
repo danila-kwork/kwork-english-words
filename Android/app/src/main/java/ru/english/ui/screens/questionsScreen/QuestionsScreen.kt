@@ -83,7 +83,7 @@ fun QuestionsScreen(
     })
 
     LaunchedEffect(key1 = countQuestions, block = {
-        if(countQuestions % 3 == 0){
+        if(countQuestions % 5 == 0 && countQuestions != 0){
             interstitialYandexAds.show()
         }
     })
@@ -128,10 +128,10 @@ fun QuestionsScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Как переводиться слово\n${word?.wordEn}",
+                text = "Как переводится слово\n${word?.wordEn}",
                 fontWeight = FontWeight.W900,
                 modifier = Modifier.padding(5.dp),
-                color = primaryText,
+                color = tintColor,
                 fontSize = 25.sp,
                 textAlign = TextAlign.Center
             )
@@ -158,13 +158,13 @@ fun QuestionsScreen(
                     Text(text = "Ответ", color = primaryText)
                 },
                 keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Go
+                    imeAction = ImeAction.Done
                 ),
-                keyboardActions = KeyboardActions(onGo = {
+                keyboardActions = KeyboardActions(onDone = {
                     if(userAnswer.lowercase().trim() == word?.wordRu?.lowercase()?.trim()){
                         wordsDataStore.getRandomWord { word = it; countQuestions++ }
                         userAnswer = ""
-                        Toast.makeText(context, "Верно", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Правильно !", Toast.LENGTH_SHORT).show()
                     }else {
                         Toast.makeText(context, "Не правильно", Toast.LENGTH_SHORT).show()
                     }

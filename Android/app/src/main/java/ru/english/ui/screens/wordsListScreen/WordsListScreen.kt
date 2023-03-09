@@ -3,6 +3,7 @@ package ru.english.ui.screens.wordsListScreen
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.material.*
@@ -13,7 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -30,6 +34,7 @@ import ru.english.data.utils.model.Utils
 import ru.english.data.words.WordsDataStore
 import ru.english.data.words.model.Word
 import ru.english.data.words.model.WordsLevel
+import ru.english.ui.theme.primaryBackground
 import ru.english.ui.theme.primaryText
 import ru.english.ui.theme.secondaryBackground
 import ru.english.ui.view.Board
@@ -73,6 +78,7 @@ fun WordsListScreen(
     LaunchedEffect(key1 = Unit, block = {
         userDataStore.get { user = it }
         utilsDataStore.get({ utils = it })
+        changeWordsLevelDropdownMenu = true
     })
 
     LaunchedEffect(key1 = wordsLevel, block = {
@@ -80,7 +86,7 @@ fun WordsListScreen(
     })
 
     LaunchedEffect(key1 = pagerState.currentPage, block = {
-        if(pagerState.currentPage % 3 == 0 && pagerState.currentPage != 0){
+        if(pagerState.currentPage % 5 == 0 && pagerState.currentPage != 0){
             rewardedYandexAds.show()
         }
     })
@@ -102,9 +108,51 @@ fun WordsListScreen(
             )
         )
 
+        if(changeWordsLevelDropdownMenu){
+            AlertDialog(
+                backgroundColor = primaryBackground,
+                shape = AbsoluteRoundedCornerShape(20.dp),
+                onDismissRequest = { changeWordsLevelDropdownMenu = false },
+                title = {
+                    Text(
+                        text = "Выберите уровень",
+                        modifier = Modifier
+                            .padding(vertical = 15.dp, horizontal = 2.dp)
+                            .fillMaxWidth(),
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.W900,
+                        textAlign = TextAlign.Center
+                    )
+                },
+                buttons = {
+                    Column(
+                        modifier = Modifier.padding(5.dp)
+                    ) {
+                        WordsLevel.values().forEach {
+                            Divider(color = secondaryBackground)
+                            DropdownMenuItem(
+                                modifier = Modifier.background(primaryBackground),
+                                onClick = { wordsLevel = it; changeWordsLevelDropdownMenu = false }
+                            ) {
+                                Text(
+                                    text = it.text,
+                                    color = primaryText,
+                                    modifier = Modifier
+                                        .padding(5.dp)
+                                        .fillMaxWidth(),
+                                    fontSize = 18.sp,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
+                    }
+                }
+            )
+        }
+
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Board(
@@ -121,34 +169,6 @@ fun WordsListScreen(
                 width = (screenWidthDp / 2).toDouble(),
                 height = (screenHeightDp / 10).toDouble()
             )
-
-            Column {
-                Card(
-                    modifier = Modifier.padding(5.dp),
-                    shape = AbsoluteRoundedCornerShape(10.dp),
-                    backgroundColor = secondaryBackground
-                ) {
-                    TextButton(
-                        modifier = Modifier.padding(5.dp),
-                        onClick = { changeWordsLevelDropdownMenu = true }
-                    ) {
-                        Text(text = wordsLevel.text, color = primaryText)
-                    }
-                }
-                DropdownMenu(
-                    expanded = changeWordsLevelDropdownMenu,
-                    onDismissRequest = { changeWordsLevelDropdownMenu = false }
-                ) {
-                    WordsLevel.values().forEach {
-                        DropdownMenuItem(onClick = { wordsLevel = it; changeWordsLevelDropdownMenu = false }) {
-                            Text(
-                                text = it.text,
-                                color = primaryText
-                            )
-                        }
-                    }
-                }
-            }
         }
 
         Column(
@@ -177,7 +197,13 @@ fun WordsListScreen(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Center
                             ) {
-                                Text(text = word.wordEn, color = primaryText)
+                                Text(
+                                    text = word.wordEn,
+                                    color = primaryText,
+                                    fontWeight = FontWeight.W900,
+                                    fontSize = 25.sp,
+                                    textAlign = TextAlign.Center
+                                )
                             }
                         }
                     },
@@ -192,7 +218,13 @@ fun WordsListScreen(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Center
                             ) {
-                                Text(text = word.wordRu, color = primaryText)
+                                Text(
+                                    text = word.wordRu,
+                                    color = primaryText,
+                                    fontWeight = FontWeight.W900,
+                                    fontSize = 25.sp,
+                                    textAlign = TextAlign.Center
+                                )
                             }
                         }
                     }
