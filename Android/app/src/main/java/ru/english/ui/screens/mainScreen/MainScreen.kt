@@ -162,6 +162,22 @@ fun MainScreen(
                     ),
                     shape = AbsoluteRoundedCornerShape(15.dp),
                     onClick = {
+                        navController.navigate(Screen.Ads.route)
+                    }
+                ) {
+                    Text(text = "Реклама", color = primaryText)
+                }
+
+                Button(
+                    modifier = Modifier
+                        .padding(horizontal = 15.dp, vertical = 5.dp)
+                        .fillMaxWidth()
+                        .height(60.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = tintColor
+                    ),
+                    shape = AbsoluteRoundedCornerShape(15.dp),
+                    onClick = {
                         rewardAlertDialog = true
                     }
                 ) {

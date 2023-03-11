@@ -28,6 +28,7 @@ import kotlinx.coroutines.delay
 import ru.english.ui.navigation.Screen
 import ru.english.ui.screens.addWordScreen.AddWordScreen
 import ru.english.ui.screens.adminScreen.AdminScreen
+import ru.english.ui.screens.adsScreen.AdsScreen
 import ru.english.ui.screens.authScreen.AuthScreen
 import ru.english.ui.screens.mainScreen.MainScreen
 import ru.english.ui.screens.questionsScreen.QuestionsScreen
@@ -116,6 +117,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Screen.AddWords.route){
                             AddWordScreen(navController = navController)
+                        }
+                        composable(Screen.Ads.route){
+                            AdsScreen()
                         }
                     }
                 )
