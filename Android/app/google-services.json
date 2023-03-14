@@ -34,6 +34,51 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878614295542:android:b6987272c799772d404dd7",
+        "android_client_info": {
+          "package_name": "ru.game.english.words"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878614295542-820bbicgf4o59cps78oj800pnaogc7dr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.game.english.words",
+            "certificate_hash": "878184fd93763906bcefae865b583a1028a47cb4"
+          }
+        },
+        {
+          "client_id": "878614295542-uh67l0kaotjddt5u60nasf3a24qkusjt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.game.english.words",
+            "certificate_hash": "ffc5c8f100f0177561ec7b8801d8c1ea06e9853e"
+          }
+        },
+        {
+          "client_id": "878614295542-d3gqnit7g4ljf4hu1nngfkupgmvsgvkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhymYyOSfgmUuWnpHkBXce1VcRXmGfF3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878614295542-d3gqnit7g4ljf4hu1nngfkupgmvsgvkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
